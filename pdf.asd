@@ -3,6 +3,8 @@
 (defvar *linux-jvm-library-path*
   "/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so")
 
+;; https://api.itextpdf.com/iText7/java/7.1.9/
+
 (defsystem pdf
   :version "0.0.0"
   :author "Xiangyu He"
@@ -18,6 +20,7 @@
                         :serial t
                         :components ((:file "package")
                                      (:file "java")
+                                     (:file "reader")
                                      (:file "document")
                                      (:file "page"))))
   :perform (load-op :after (o c)
