@@ -1,15 +1,25 @@
 (in-package :pdf)
 
 (defclass document ()
-  ())
+  ((java-object
+    :initarg :java-object
+    :initform nil
+    :accessor java-object)))
 
 (defmethod print-object ((document document) stream)
   (print-unreadable-object (document stream :type t :identity t)
     ))
 
+(defmacro document (&rest forms)
+  (with-gensyms (forms/s reader/s)
+    `(let ((,forms/s (list ,@forms)))
+       (let ((,reader/s (first ,forms/s)))
+         (make-instance 'document
+                        :java-object (PdfDocument.new (java-object ,reader/s)))))))
+
 (defgeneric document-page-count (document)
   (:method ((document document))
-    ))
+    (PdfDocument.getNumberOfPages (java-object document))))
 
 (defgeneric document-page-numbers (document)
   (:method ((document document))
@@ -23,7 +33,8 @@
   (:method ((document document) number)
     (check-type number integer)
     (assert (> number 0))
-    ))
+    (page
+     (PdfDocument.getPage (java-object document) number))))
 
 (defgeneric document-pages (document)
   (:method ((document document))

@@ -23,6 +23,7 @@
      (asdf/system:find-system "pdf")))))
 
 (defun write-all-java-class-definitions ()
-  (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfReader"))
-
-;; (|com.itextpdf.kernel.pdf|:pdfreader.new "c:/Users/XH/Documents/HBR/HBR's 10 Must Reads on Communication.pdf")
+  (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfReader")
+  (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfPage")
+  (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfDocument")
+  (write-java-class-definitions "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor"))

@@ -15,14 +15,18 @@
   :serial t
   :components ((:module "java"
                         :serial t
-                        :components ((:file "com.itextpdf.kernel.pdf.PdfReader")))
+                        :components ((:file "com.itextpdf.kernel.pdf.PdfReader")
+                                     (:file "com.itextpdf.kernel.pdf.PdfPage")
+                                     (:file "com.itextpdf.kernel.pdf.PdfDocument")
+                                     (:file "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor")))
                (:module "pdf"
                         :serial t
                         :components ((:file "package")
                                      (:file "java")
                                      (:file "reader")
                                      (:file "document")
-                                     (:file "page"))))
+                                     (:file "page")
+                                     (:file "extractor"))))
   :perform (load-op :after (o c)
                     (format t "Initializing Java interface...")
                     (uiop:symbol-call :pdf '#:initialize-java-interface
