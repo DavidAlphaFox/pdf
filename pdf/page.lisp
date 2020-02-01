@@ -1,7 +1,11 @@
 (in-package :pdf)
 
 (defclass page ()
-  ((java-object
+  ((number
+    :initarg :number
+    :initform nil
+    :accessor page-number)
+   (java-object
     :initarg :java-object
     :initform nil
     :accessor java-object)))

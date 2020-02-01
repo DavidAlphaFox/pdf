@@ -1,10 +1,14 @@
 (in-package :pdf)
 
 (defclass document ()
-  ((java-object
-    :initarg :java-object
+  ((reader
+    :initarg :reader
     :initform nil
-    :accessor java-object)))
+    :accessor document-reader)
+   (writer
+    :initarg :writer
+    :initform nil
+    :accessor document-writer)))
 
 (defmethod print-object ((document document) stream)
   (print-unreadable-object (document stream :type t :identity t)
@@ -18,8 +22,7 @@
                         :java-object (PdfDocument.new (java-object ,reader/s)))))))
 
 (defgeneric document-page-count (document)
-  (:method ((document document))
-    (PdfDocument.getNumberOfPages (java-object document))))
+  (:method ((document document)) 0))
 
 (defgeneric document-page-numbers (document)
   (:method ((document document))
@@ -33,8 +36,10 @@
   (:method ((document document) number)
     (check-type number integer)
     (assert (> number 0))
-    (page
-     (PdfDocument.getPage (java-object document) number))))
+    (let ((page (page
+                 (PdfDocument.getPage (java-object document) number))))
+      (setf (page-number page) number)
+      page)))
 
 (defgeneric document-pages (document)
   (:method ((document document))

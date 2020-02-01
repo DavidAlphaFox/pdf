@@ -15,17 +15,20 @@
   :serial t
   :components ((:module "java"
                         :serial t
-                        :components ((:file "com.itextpdf.kernel.pdf.PdfReader")
+                        :components ((:file "java.io.File")
+                                     (:file "com.itextpdf.kernel.pdf.PdfReader")
                                      (:file "com.itextpdf.kernel.pdf.PdfPage")
                                      (:file "com.itextpdf.kernel.pdf.PdfDocument")
-                                     (:file "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor")))
+                                     (:file "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor")
+                                     (:file "org.apache.pdfbox.pdmodel.PDDocument")
+                                     (:file "org.apache.pdfbox.text.PDFTextStripper")))
                (:module "pdf"
                         :serial t
                         :components ((:file "package")
                                      (:file "java")
                                      (:file "reader")
-                                     (:file "document")
                                      (:file "page")
+                                     (:file "document")
                                      (:file "extractor"))))
   :perform (load-op :after (o c)
                     (format t "Initializing Java interface...")

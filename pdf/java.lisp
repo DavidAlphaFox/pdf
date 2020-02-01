@@ -23,7 +23,10 @@
      (asdf/system:find-system "pdf")))))
 
 (defun write-all-java-class-definitions ()
+  (write-java-class-definitions "java.io.File")
   (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfReader")
   (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfPage")
   (write-java-class-definitions "com.itextpdf.kernel.pdf.PdfDocument")
-  (write-java-class-definitions "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor"))
+  (write-java-class-definitions "com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor")
+  (write-java-class-definitions "org.apache.pdfbox.pdmodel.PDDocument")
+  (write-java-class-definitions "org.apache.pdfbox.text.PDFTextStripper"))
